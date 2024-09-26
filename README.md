@@ -2,8 +2,12 @@
 
 ![](screenshots/1.png)
 
-### Features
 
+### Features
+#### Added Features
+- Customizable labels for timeline annotations
+
+#### Original Features
 - Visualize robots and robot trajectories
 - Visualize rosbags
 - Annotate rosbags
