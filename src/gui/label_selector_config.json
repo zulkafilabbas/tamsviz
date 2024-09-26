@@ -1,0 +1,24 @@
+{
+    "categories": [
+        {
+            "name": "Customer Metadata",
+            "actions": ["Customer Number", "Customer Sex", "Customer Age"]
+        },
+        {
+            "name": "Customer Movement",
+            "actions": ["Walking", "Standing"]
+        },
+        {
+            "name": "Customer Location",
+            "actions": ["Mirror", "Shelf", "Checkout"]
+        },
+        {
+            "name": "Customer Gaze",
+            "actions": ["Mirror", "Shelf", "Checkout", "Isle", "Elsewhere"]
+        },
+        {
+            "name": "Customer Arm Movements",
+            "actions": ["Picking", "Holding", "Wearing", "Idle"]
+        }
+    ]
+}
