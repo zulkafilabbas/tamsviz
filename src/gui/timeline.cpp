@@ -17,9 +17,14 @@
 #include <sensor_msgs/Image.h>
 #include <std_msgs/Float64.h>
 
+#include <QFile>
+#include <QTextStream>
+#include <QProcess>
+
 static const double track_height = 42;
 static const double track_label_width = 200;
 static const double track_padding_right = 100;
+
 
 template <class FNC>
 static void updateEnabled(QLayout *layout, const FNC &callback) {
@@ -116,8 +121,26 @@ public:
                       QTextOption(_alignment));
     painter->restore();
   }
+  
   virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override {
-    if (!_edit) {
+    if (event->button() == Qt::RightButton) {
+      event->accept();
+      QProcess process;
+      process.start("python3", QStringList() << "/home/robovie/ztamsviz_ws/src/tamsviz/src/gui/label_selector.py");
+      process.waitForFinished(-1); // Wait indefinitely for the process to finish
+
+      // Read the selected label from the file
+      QFile file("/tmp/selected_label.txt");
+      if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString label = in.readLine();
+        if (!label.isEmpty()) {
+          setText(label.toStdString());
+          changed(label.toStdString());
+        }
+        file.remove(); // Clean up the temporary file
+      }
+    } else if (!_edit) {
       scene()->views().front()->setFocusPolicy(Qt::StrongFocus);
       scene()->views().front()->setFocus();
       _edit = new QLineEdit();
