@@ -101,34 +101,55 @@ class LabelSelector:
         self.update_selected_labels_display()
 
     def submit_selections(self):
-        final_label = ", ".join(f"{k}: {v}" for k, v in self.selected_labels.items() if v)
-        
-        # if "Customer Movement: Walking" in final_label:
-        #     final_label = "Browsing"
-        # elif "Customer Movement: Standing" in final_label:
-        #     if "Customer Location: Mirror" in final_label and "Customer Gaze: Mirror" in final_label:
-        #         final_label = "Mirror"
-        #     elif "Customer Location: Shelf" in final_label and "Customer Gaze: Shelf" in final_label:
-        #         final_label = "Shelf"
-        #     elif "Customer Location: Checkout" in final_label and "Customer Gaze: Checkout" in final_label:
-        #         final_label = "Purchasing"
-        #     elif "Customer Location: Isle" in final_label and "Customer Gaze: Isle" in final_label:
-        #         final_label = "Isle"
-        #     else:
-        #         final_label = "Idle"
-        # elif "Customer Arm Movements:" in final_label:
-        #     if "Customer Arm Movements: Picking" in final_label:
-        #         final_label = "Picking"
-        #     elif "Customer Arm Movements: Holding" in final_label:
-        #         final_label = "Holding"
-        #     elif "Customer Arm Movements: Wearing" in final_label:
-        #         final_label = "Wearing"
-        #     elif "Customer Arm Movements: Idle" in final_label:
-        #         final_label = "Idle"
-        #     else:
-        #         final_label = "Other Arm Movement"
+        # final_label = ", ".join(f"{k}: {v}" for k, v in self.selected_labels.items() if v)
+        # self.write_label_and_exit(final_label)
 
-        self.write_label_and_exit(final_label)
+        # Compile selected actions into a single string
+        decision_string = ", ".join(
+            f"{k}: {v}" for k, v in self.selected_labels.items() if v
+        )
+        
+        # Decision logic to determine the final label based on the selected actions
+        movement = self.selected_labels.get("Customer Movement")
+        location = self.selected_labels.get("Customer Location")
+        gaze = self.selected_labels.get("Customer Gaze")
+        arm_movement = self.selected_labels.get("Customer Arm Movements")
+        
+        final_label = "Idle"  # Default label
+
+        if movement == "Walking":
+            final_label = "Browsing"
+        elif movement == "Standing":
+            if location == gaze:
+                if location == "Mirror":
+                    final_label = "Mirror" if arm_movement != "Holding" else "Holding"
+                elif location == "Shelf":
+                    final_label = "Looking"
+                    if arm_movement in ["Picking", "Holding", "Wearing"]:
+                        final_label = arm_movement
+                elif location == "Counter":
+                    final_label = "Purchasing" if arm_movement == "Holding" else "Idle"
+                elif location == "Aisle":
+                    final_label = "Browsing"
+                else:
+                    final_label = "Idle"
+            elif location != gaze:
+                if (location, gaze) == ("Shelf", "Mirror"):
+                    final_label = "Mirror"
+                elif gaze == "Mirror":
+                    final_label = "Mirror" if arm_movement != "Holding" else "Holding"
+                elif gaze == "Shelf":
+                    final_label = "Looking"
+                    if arm_movement in ["Picking", "Wearing"]:
+                        final_label = arm_movement
+                else:
+                    final_label = "Looking"
+        
+        # Construct the output string with decision and label
+        output_string = f"decision: [{decision_string}], label: [{final_label}]"
+
+        self.write_label_and_exit(output_string)
+
 
     def write_label_and_exit(self, label):
         with open("/tmp/selected_label.txt", "w") as f:

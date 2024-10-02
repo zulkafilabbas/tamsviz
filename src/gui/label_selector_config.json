@@ -10,11 +10,11 @@
         },
         {
             "name": "Customer Location",
-            "actions": ["Mirror", "Shelf", "Checkout"]
+            "actions": ["Mirror", "Shelf", "Counter", "Aisle"]
         },
         {
             "name": "Customer Gaze",
-            "actions": ["Mirror", "Shelf", "Checkout", "Isle", "Elsewhere"]
+            "actions": ["Mirror", "Shelf", "Counter", "Aisle", "Elsewhere"]
         },
         {
             "name": "Customer Arm Movements",
