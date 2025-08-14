@@ -140,3 +140,30 @@ add_executable(${PROJECT_NAME}
 )
 add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${QT_LIBRARIES} ${ASSIMP_LIBRARIES} -lGL -lEGL -lGLEW yaml-cpp)
+
+# --- Install the binary and runtime assets (catkin_make install) ---
+install(TARGETS ${PROJECT_NAME}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(PROGRAMS
+  src/gui/label_selector.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}/gui
+)
+
+install(FILES
+  src/gui/label_selector_config.json
+  src/gui/tamsviz-addon.json
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+# --- Copy assets into devel space for direct runs (catkin_make) ---
+set(RUNTIME_DST ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
+add_custom_target(copy_runtime ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${RUNTIME_DST}/gui
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/label_selector2.py ${RUNTIME_DST}/gui/
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/label_selector_config2.json ${RUNTIME_DST}/gui/
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/tamsviz_addon_config.json ${RUNTIME_DST}/
+  COMMENT "Copying GUI runtime assets to devel space"
+)
+add_dependencies(copy_runtime ${PROJECT_NAME})

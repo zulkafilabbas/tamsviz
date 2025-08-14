@@ -25,6 +25,33 @@ static const double track_height = 42;
 static const double track_label_width = 200;
 static const double track_padding_right = 100;
 
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDebug>
+
+static QString getPythonScriptPath() {
+    // QFile file("src/gui/tamsviz_addon_config.json");  // relative to run dir
+    
+    QFile file(QCoreApplication::applicationDirPath() + "/tamsviz_addon_config.json");
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Could not open tamsviz_addon_config.json";
+        return "";
+    }
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (!doc.isObject()) {
+        qWarning() << "Invalid JSON format in script_path_config.json";
+        return "";
+    }
+
+    QJsonObject obj = doc.object();
+    return obj.value("python_script").toString();
+}
+
 
 template <class FNC>
 static void updateEnabled(QLayout *layout, const FNC &callback) {
@@ -121,12 +148,13 @@ public:
                       QTextOption(_alignment));
     painter->restore();
   }
-  
+
   virtual void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override {
     if (event->button() == Qt::RightButton) {
       event->accept();
       QProcess process;
-      process.start("python3", QStringList() << "/home/robovie/ztamsviz_ws/src/tamsviz/src/gui/label_selector.py");
+      // process.start("python3", QStringList() << "/home/robovie/ztamsviz2_ws/src/tamsviz/src/gui/label_selector.py");
+      process.start("python3", QStringList() << getPythonScriptPath());
       process.waitForFinished(-1); // Wait indefinitely for the process to finish
 
       // Read the selected label from the file
