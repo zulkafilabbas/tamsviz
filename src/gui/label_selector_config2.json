@@ -1,0 +1,22 @@
+{
+    "categories": [
+        {
+            "name": "Movement & Location",
+            "actions": [
+                "Moving through the Store",
+                "Standing at the Shelf",
+                "Standing at the Mirror",
+                "Standing at the Counter"
+            ]
+        },
+        {
+            "name": "Arm Action",
+            "actions": [
+                "Extending / Retracting to Pick or Place",
+                "Holding Hat in Hand",
+                "Placing Hat on Head / Taking it Off",
+                "Idle"
+            ]
+        }
+    ]
+}
