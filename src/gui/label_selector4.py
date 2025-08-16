@@ -16,7 +16,7 @@ class ToolTip:
         self.widget = widget
         self.text = text
         self.tip_window = None
-        self.enabled = True
+        self.enabled = False
 
         self.widget.bind("<Enter>", self.show_tip)
         self.widget.bind("<Leave>", self.hide_tip)
