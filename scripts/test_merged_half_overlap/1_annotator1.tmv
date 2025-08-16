@@ -40,16 +40,10 @@ Timeline:
           Spans:
             - Annotations:
                 []
-              Duration: 9.925735
-              Label: "decision: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting]"
-              Start: 0.000000
-              id: 921
-            - Annotations:
-                []
-              Duration: 13.036786
-              Label: "decision: [Customer Movement & Location: Standing at the Counter, Customer Arm Action: Idle, Customer Interaction Flags: Not Interacting], label: [Customer Movement & Location: Standing at the Counter, Customer Arm Action: Idle, Customer Interaction Flags: Not Interacting]"
-              Start: 49.815942
-              id: 922
+              Duration: 20.009768
+              Label: "decision: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Not Interacting], label: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Not Interacting]"
+              Start: 9.951682
+              id: 5571
           id: 810
       Color: 0.000000
       Label: 1

@@ -1,0 +1,85 @@
+Display:
+  Displays: []
+  Environment:
+    AmbientLighting: 1.0
+    BackgroundBrightness: 1.0
+    BackgroundColor:
+      A: 1.0
+      B: 0.3
+      G: 0.3
+      R: 0.3
+    EnvironmentMap: ''
+    GroundColor:
+      B: 0.0
+      G: 0.0
+      R: 0.0
+    HemisphericLighting: 0.5
+    UseEnvironmentMap: false
+    id: 806
+    type: EnvironmentComponent
+  FixedFrame: world
+  Name: Document
+  Rendering:
+    BlackLevel: 0.0
+    Exposure: 1.0
+    MultiSampling: 4
+    SampleShading: 1
+    ShadowCubeResolution: 512
+    ShadowMapResolution: 1024
+    ToneMapping: true
+    WhiteLevel: 1.0
+    id: 805
+    type: RenderingComponent
+  Republish: true
+  id: 804
+Timeline:
+  Tracks:
+  - Branches:
+    - Name: test_merged.bag
+      Spans:
+      - Annotations: []
+        Duration: 20.009768
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Not Interacting], label: [Customer Movement & Location: Moving through
+          the Store, Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Not Interacting]'
+        Start: 9.951682
+        id: 5571
+      id: 810
+    Color: 0.0
+    Label: 1_annotator1
+    id: 808
+    type: AnnotationTrack
+  - Branches:
+    - Name: test_merged.bag
+      Spans:
+      - Annotations: []
+        Duration: 20.056584
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Not Interacting], label: [Customer Movement & Location: Moving through
+          the Store, Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Not Interacting]'
+        Start: 19.926102
+        id: 7599
+      id: 2810
+    Color: 0.0
+    Label: 1_annotator2
+    id: 2808
+    type: AnnotationTrack
+  id: 803
+Window:
+  Center:
+    X: 0.5
+    Y: 0.5
+  Name: Window
+  Options:
+    ColorMapApply: false
+    ColorMapType: 9
+    NormalizeDepth: true
+  Topic: /windows_07/image/compressed
+  Zoom: 1.0
+  id: 897
+  type: ImageWindow
+id: 802

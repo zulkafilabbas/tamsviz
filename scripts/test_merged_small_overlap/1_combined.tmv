@@ -38,22 +38,14 @@ Timeline:
     - Name: test_merged.bag
       Spans:
       - Annotations: []
-        Duration: 9.925735
-        Label: 'decision: [Customer Movement & Location: Moving through the Store,
-          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
-          Interacting], label: [Customer Movement & Location: Moving through the Store,
-          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
-          Interacting]'
-        Start: 0.0
-        id: 921
-      - Annotations: []
-        Duration: 13.036786
+        Duration: 19.484346
         Label: 'decision: [Customer Movement & Location: Standing at the Counter,
-          Customer Arm Action: Idle, Customer Interaction Flags: Not Interacting],
-          label: [Customer Movement & Location: Standing at the Counter, Customer
-          Arm Action: Idle, Customer Interaction Flags: Not Interacting]'
-        Start: 49.815942
-        id: 922
+          Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Interacting], label: [Customer Movement & Location: Standing at the
+          Counter, Customer Arm Action: Holding Arm in front of Body, Customer Interaction
+          Flags: Interacting]'
+        Start: 21.160418
+        id: 5456
       id: 810
     Color: 0.0
     Label: 1_annotator1
@@ -63,22 +55,14 @@ Timeline:
     - Name: test_merged.bag
       Spans:
       - Annotations: []
-        Duration: 9.925735
-        Label: 'decision: [Customer Movement & Location: Standing at the Shelf, Customer
-          Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting],
-          label: [Customer Movement & Location: Standing at the Shelf, Customer Arm
-          Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting]'
-        Start: 0.0
-        id: 2921
-      - Annotations: []
-        Duration: 13.036786
+        Duration: 8.863197
         Label: 'decision: [Customer Movement & Location: Standing at the Mirror, Customer
           Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags:
           Not Interacting], label: [Customer Movement & Location: Standing at the
           Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer
           Interaction Flags: Not Interacting]'
-        Start: 49.815942
-        id: 2922
+        Start: 26.666899
+        id: 5056
       id: 2810
     Color: 0.0
     Label: 1_annotator2

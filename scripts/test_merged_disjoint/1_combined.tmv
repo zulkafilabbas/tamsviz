@@ -41,19 +41,33 @@ Timeline:
             - Annotations:
                 []
               Duration: 9.925735
-              Label: "decision: [Customer Movement & Location: Standing at the Shelf, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Standing at the Shelf, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting]"
+              Label: "decision: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting]"
               Start: 0.000000
               id: 921
             - Annotations:
                 []
               Duration: 13.036786
-              Label: "decision: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Not Interacting], label: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Not Interacting]"
+              Label: "decision: [Customer Movement & Location: Standing at the Counter, Customer Arm Action: Idle, Customer Interaction Flags: Not Interacting], label: [Customer Movement & Location: Standing at the Counter, Customer Arm Action: Idle, Customer Interaction Flags: Not Interacting]"
               Start: 49.815942
               id: 922
           id: 810
       Color: 0.000000
-      Label: 1
+      Label: 1_annotator1
       id: 808
+      type: AnnotationTrack
+    - Branches:
+        - Name: test_merged.bag
+          Spans:
+            - Annotations:
+                []
+              Duration: 18.081597
+              Label: "decision: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Not Interacting], label: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Not Interacting]"
+              Start: 24.152790
+              id: 5056
+          id: 2810
+      Color: 0.000000
+      Label: 1_annotator2
+      id: 2808
       type: AnnotationTrack
   id: 803
 Window:
