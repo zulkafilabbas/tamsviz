@@ -1,0 +1,29 @@
+{
+    "categories": [
+        {
+            "name": "Customer Movement & Location",
+            "actions": [
+                {"label": "Moving through the Store", "description": "walking or moving from one location to another, strafing from side to side is included"},
+                {"label": "Standing at the Shelf", "description": "stationary in front of a shelf, slight movements don't count"},
+                {"label": "Standing at the Mirror", "description": "statioinary at the mirror, slight movements don't count"},
+                {"label": "Standing at the Counter", "description": "stationary at the counter, slight movements don't count"}
+            ]
+        },
+        {
+            "name": "Customer Arm Action",
+            "actions": [
+                {"label": "Extending or Retracting Arm", "description": "to pick or place a hat, the entire motion is included"},
+                {"label": "Holding Arm in front of Body", "description": "to hold and inspect a hat"},
+                {"label": "Raising or Lowering Arm from Head", "description": "to wear a hat, the entire motion is included"},
+                {"label": "Idle", "description": "when arms rest to the side with no meaningful movement"}
+            ]
+        },
+        {
+            "name": "Customer Interaction Flags",
+            "actions": [
+                {"label": "Interacting", "description": "Verbal or physical (both active such as handing over items, gestures and passive such as being present nearby) interactions with shopkeeper"},
+                {"label": "Not Interacting", "description": "If no shopkeeper is present nearby or has disengaged"}
+            ]
+        }
+    ]
+}

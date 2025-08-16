@@ -1,0 +1,31 @@
+{
+    "categories": [
+        {
+            "name": "Customer Movement & Location",
+            "actions": [
+                "Moving through the Store",
+                "Standing at the Shelf",
+                "Standing at the Mirror",
+                "Standing at the Counter"
+            ]
+        },
+        {
+            "name": "Customer Arm Action",
+            "actions": [
+                "Extending or Retracting Arm (e.g., to pick or place hat)",
+                "Holding Arm in front of Body (e.g., inspecting hat in hand)",
+                "Raising or Lowering Arm to/from Head (e.g., to wear the hat)",
+                "Idle (e.g., arms resting to the side with no movement)"
+            ]
+        },
+        {
+            "name": "Customer Interaction Flags",
+            "actions": [
+                "Gesture",
+                "Item Exchange",
+                "Verbal",
+                "Not Intereacting"
+            ]
+        }
+    ]
+}
