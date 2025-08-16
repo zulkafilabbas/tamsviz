@@ -1,0 +1,124 @@
+Display:
+  Displays:
+    []
+  Environment:
+    AmbientLighting: 1.000000
+    BackgroundBrightness: 1.000000
+    BackgroundColor:
+      A: 1.000000
+      B: 0.300000
+      G: 0.300000
+      R: 0.300000
+    EnvironmentMap: ""
+    GroundColor:
+      B: 0.000000
+      G: 0.000000
+      R: 0.000000
+    HemisphericLighting: 0.500000
+    UseEnvironmentMap: false
+    id: 806
+    type: EnvironmentComponent
+  FixedFrame: world
+  Name: Document
+  Rendering:
+    BlackLevel: 0.000000
+    Exposure: 1.000000
+    MultiSampling: 4
+    SampleShading: 1
+    ShadowCubeResolution: 512
+    ShadowMapResolution: 1024
+    ToneMapping: true
+    WhiteLevel: 1.000000
+    id: 805
+    type: RenderingComponent
+  Republish: true
+  id: 804
+Timeline:
+  Tracks:
+    - Branches:
+        - Name: test_merged.bag
+          Spans:
+            - Annotations:
+                []
+              Duration: 14.037110
+              Label: "Customer Movement: Walking"
+              Start: 20.741400
+              id: 898
+            - Annotations:
+                []
+              Duration: 9.218400
+              Label: "Customer Movement: Standing, Customer Location: Shelf, Customer Gaze: Checkout, Customer Arm Movements: Idle"
+              Start: 8.311151
+              id: 901
+          id: 810
+      Color: 0.000000
+      Label: 1
+      id: 808
+      type: AnnotationTrack
+    - Branches:
+        - Name: test_merged.bag
+          Spans:
+            - Annotations:
+                []
+              Duration: 9.218400
+              Label: "Customer Movement: Standing, Customer Location: Isle, Customer Gaze: Elsewhere, Customer Arm Movements: Idle"
+              Start: 3.980673
+              id: 909
+            - Annotations:
+                []
+              Duration: 11.103982
+              Label: "Customer Movement: Standing, Customer Location: Isle, Customer Gaze: Elsewhere, Customer Arm Movements: Idle"
+              Start: 18.436800
+              id: 911
+          id: 910
+      Color: 0.500000
+      Label: 2
+      id: 908
+      type: AnnotationTrack
+    - Branches:
+        - Name: test_merged.bag
+          Spans:
+            - Annotations:
+                []
+              Duration: 4.289430
+              Label: "Customer Movement: Standing"
+              Start: 6.698110
+              id: 914
+            - Annotations:
+                []
+              Duration: 8.017934
+              Label: "Customer Movement: Standing, Customer Location: Shelf, Customer Gaze: Shelf, Customer Arm Movements: Idle"
+              Start: 13.132255
+              id: 916
+            - Annotations:
+                []
+              Duration: 4.289430
+              Label: "Customer Movement: Standing, Customer Location: Shelf, Customer Gaze: Checkout, Customer Arm Movements: Idle"
+              Start: 23.690851
+              id: 917
+            - Annotations:
+                []
+              Duration: 13.228088
+              Label: "Customer Movement: Standing, Customer Location: Mirror, Customer Gaze: Shelf, Customer Arm Movements: Picking"
+              Start: 29.866083
+              id: 918
+          id: 915
+      Color: 0.250000
+      Label: 3
+      id: 913
+      type: AnnotationTrack
+  id: 803
+Window:
+  Center:
+    X: 0.500000
+    Y: 0.500000
+  Name: Window
+  Options:
+    ColorMapApply: false
+    ColorMapType: 9
+    NormalizeDepth: true
+  Topic: /windows_07/image/compressed
+  Zoom: 1.000000
+  id: 897
+  type: ImageWindow
+id: 802
