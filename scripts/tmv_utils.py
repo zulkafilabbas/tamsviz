@@ -141,75 +141,6 @@ class TmvMerger:
             raise ValueError(f"Mismatched bags across TMVs: {bag_names}")
         self.bag_name = bag_names.pop()
 
-    ##############################################################################
-    # def _merge(self):
-    #     # Deep copy first TMV
-    #     base_data = copy.deepcopy(self.parsers[0].tmv_data)
-    #     merged_tracks = []
-
-    #     # Rename base annotator’s tracks too
-    #     for track in base_data["Timeline"]["Tracks"]:
-    #         new_track = copy.deepcopy(track)
-    #         new_track["Label"] = f"{track['Label']}_{self.annotator_ids[0]}"
-    #         for branch in new_track.get("Branches", []):
-    #             branch["Name"] = self.bag_name
-    #         merged_tracks.append(new_track)
-
-    #     # Add tracks from other annotators
-    #     for parser, annotator in zip(self.parsers[1:], self.annotator_ids[1:]):
-    #         for track in parser.tmv_data["Timeline"]["Tracks"]:
-    #             new_track = copy.deepcopy(track)
-    #             new_track["Label"] = f"{track['Label']}_{annotator}"
-    #             for branch in new_track.get("Branches", []):
-    #                 branch["Name"] = self.bag_name
-    #             merged_tracks.append(new_track)
-
-    #     base_data["Timeline"]["Tracks"] = merged_tracks
-    #     self.merged_data = base_data
-
-    ##############################################################################
-    # def _merge(self):
-    #     # Deep copy first TMV
-    #     base_data = copy.deepcopy(self.parsers[0].tmv_data)
-    #     merged_tracks = []
-
-    #     # Rename base annotator’s tracks too
-    #     for track in base_data["Timeline"]["Tracks"]:
-    #         new_track = copy.deepcopy(track)
-    #         new_track["Label"] = f"{track['Label']}_{self.annotator_ids[0]}"
-    #         # Keep IDs unchanged for annotator1
-    #         for branch in new_track.get("Branches", []):
-    #             branch["Name"] = self.bag_name
-    #         merged_tracks.append(new_track)
-
-    #     # Add tracks from other annotators with shifted IDs
-    #     for idx, (parser, annotator) in enumerate(zip(self.parsers[1:], self.annotator_ids[1:]), start=2):
-    #         for track in parser.tmv_data["Timeline"]["Tracks"]:
-    #             new_track = copy.deepcopy(track)
-    #             new_track["Label"] = f"{track['Label']}_{annotator}"
-
-    #             # Shift IDs far away to avoid collisions
-    #             def shift_ids(obj, factor=idx*1000):
-    #                 if isinstance(obj, dict):
-    #                     if "id" in obj and isinstance(obj["id"], int):
-    #                         obj["id"] += factor
-    #                     for v in obj.values():
-    #                         shift_ids(v, factor)
-    #                 elif isinstance(obj, list):
-    #                     for v in obj:
-    #                         shift_ids(v, factor)
-
-    #             shift_ids(new_track)
-
-    #             for branch in new_track.get("Branches", []):
-    #                 branch["Name"] = self.bag_name
-
-    #             merged_tracks.append(new_track)
-
-    #     base_data["Timeline"]["Tracks"] = merged_tracks
-    #     self.merged_data = base_data
-
-    ##############################################################################
     def _merge(self):
         # Deep copy first TMV
         base_data = copy.deepcopy(self.parsers[0].tmv_data)
@@ -273,9 +204,16 @@ class TmvMerger:
 # merger.save("overall_test/1_combined.tmv")  # ready to load into TAMSVIZ
 
 
+# merger = TmvMerger(
+#     ["overall_test_sublabels/1_annotator1.tmv", "overall_test_sublabels/1_annotator2.tmv"],
+#     ["annotator1", "annotator2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("overall_test_sublabels/1_combined.tmv")  # ready to load into TAMSVIZ
+
 merger = TmvMerger(
-    ["overall_test_sublabels/1_annotator1.tmv", "overall_test_sublabels/1_annotator2.tmv"],
+    ["kappa_test_by_hand/1_annotator1.tmv", "kappa_test_by_hand/1_annotator2.tmv"],
     ["annotator1", "annotator2"]
 )
 print(merger.to_dict())  # see merged structure
-merger.save("overall_test_sublabels/1_combined.tmv")  # ready to load into TAMSVIZ
+merger.save("kappa_test_by_hand/1_combined.tmv")  # ready to load into TAMSVIZ

@@ -129,38 +129,6 @@ class Agreement:
             "confusion_matrix": conf.tolist(),
         }
 
-
-    # def diff_sub_labels(self, label1: str, label2: str) -> str:
-    #     """
-    #     Extracts only the differing sub-labels between two annotators.
-    #     Handles None gracefully.
-    #     """
-
-    #     def parse(label_str):
-    #         if not label_str:  # catches None or empty string
-    #             return {}
-    #         # Take only the part after 'label:'
-    #         if "label:" in label_str:
-    #             label_str = label_str.split("label:", 1)[1]
-    #         label_str = label_str.strip(" []")
-    #         parts = [p.strip() for p in label_str.split(",")]
-    #         parsed = {}
-    #         for p in parts:
-    #             if ": " in p:
-    #                 k, v = p.split(": ", 1)
-    #                 parsed[k.strip()] = v.strip()
-    #         return parsed
-
-    #     d1, d2 = parse(label1), parse(label2)
-
-    #     diffs = []
-    #     for k in d1.keys() | d2.keys():
-    #         v1, v2 = d1.get(k), d2.get(k)
-    #         if v1 != v2:
-    #             diffs.append(f"{k}: {v1 if v1 else 'NULL_OBJ'} vs {v2 if v2 else 'NULL_OBJ'}")
-
-    #     return " | ".join(diffs) if diffs else "agree"
-
     def diff_sub_labels(self, label1: str, label2: str) -> str:
         """
         Extracts only the differing sub-labels between two annotators,
@@ -196,8 +164,6 @@ class Agreement:
                 diffs.append(f"{k}: {v1 if v1 else 'NULL_OBJ'} vs {v2 if v2 else 'NULL_OBJ'}")
 
         return " | ".join(diffs) if diffs else "agree"
-
-
 
 
     def add_disagreements_to_tmv(self, aligned_intervals, out_path):
@@ -259,13 +225,32 @@ if __name__ == "__main__":
     # else:
     #     print("No disagreements found.")
 
-    agreement = Agreement("overall_test_sublabels/1_combined.tmv")
+    # agreement = Agreement("overall_test_sublabels/1_combined.tmv")
+    # agreement.extract_spans()
+    # aligned = agreement.align_and_compare()
+    # metrics = agreement.compute_metrics(aligned, "overall_test_sublabels/aligned_intervals.csv")
+    # print("Metrics:", metrics)
+
+    # out_file = agreement.add_disagreements_to_tmv(aligned, "overall_test_sublabels/1_with_disagreements.tmv")
+    # if out_file:
+    #     print("Saved disagreements to:", out_file)
+    # else:
+    #     print("No disagreements found.")
+
+    agreement = Agreement("kappa_test_by_hand/1_combined.tmv")
     agreement.extract_spans()
     aligned = agreement.align_and_compare()
-    metrics = agreement.compute_metrics(aligned, "overall_test_sublabels/aligned_intervals.csv")
+    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand/aligned_intervals.csv")
+
+    # save metrics to a CSV
+    with open("kappa_test_by_hand/metrics_report.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=metrics.keys())
+        writer.writeheader()
+        writer.writerow(metrics)
+
     print("Metrics:", metrics)
 
-    out_file = agreement.add_disagreements_to_tmv(aligned, "overall_test_sublabels/1_with_disagreements.tmv")
+    out_file = agreement.add_disagreements_to_tmv(aligned, "kappa_test_by_hand/1_with_disagreements.tmv")
     if out_file:
         print("Saved disagreements to:", out_file)
     else:
