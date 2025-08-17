@@ -1,0 +1,120 @@
+Display:
+  Displays: []
+  Environment:
+    AmbientLighting: 1.0
+    BackgroundBrightness: 1.0
+    BackgroundColor:
+      A: 1.0
+      B: 0.3
+      G: 0.3
+      R: 0.3
+    EnvironmentMap: ''
+    GroundColor:
+      B: 0.0
+      G: 0.0
+      R: 0.0
+    HemisphericLighting: 0.5
+    UseEnvironmentMap: false
+    id: 806
+    type: EnvironmentComponent
+  FixedFrame: world
+  Name: Document
+  Rendering:
+    BlackLevel: 0.0
+    Exposure: 1.0
+    MultiSampling: 4
+    SampleShading: 1
+    ShadowCubeResolution: 512
+    ShadowMapResolution: 1024
+    ToneMapping: true
+    WhiteLevel: 1.0
+    id: 805
+    type: RenderingComponent
+  Republish: true
+  id: 804
+Timeline:
+  Tracks:
+  - Branches:
+    - Name: test_merged.bag
+      Spans:
+      - Annotations: []
+        Duration: 1.999006
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting], label: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting]'
+        Start: 0.541697
+        id: 904412
+      - Annotations: []
+        Duration: 1.999006
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting], label: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting]'
+        Start: 2.999004
+        id: 906661
+      - Annotations: []
+        Duration: 1.999006
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting], label: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting]'
+        Start: 5.4825
+        id: 908845
+      id: 810
+    Color: 0.0
+    Label: 1_annotator1
+    id: 808
+    type: AnnotationTrack
+  - Branches:
+    - Name: test_merged.bag
+      Spans:
+      - Annotations: []
+        Duration: 2.000417
+        Label: 'decision: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting], label: [Customer Movement & Location: Moving through the Store,
+          Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags:
+          Interacting]'
+        Start: 0.999407
+        id: 906443
+      - Annotations: []
+        Duration: 2.000417
+        Label: 'decision: [Customer Movement & Location: Standing at the Shelf, Customer
+          Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting],
+          label: [Customer Movement & Location: Standing at the Shelf, Customer Arm
+          Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting]'
+        Start: 2.999824
+        id: 908694
+      - Annotations: []
+        Duration: 2.000417
+        Label: 'decision: [Customer Movement & Location: Standing at the Mirror, Customer
+          Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags:
+          Interacting], label: [Customer Movement & Location: Standing at the Mirror,
+          Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction
+          Flags: Interacting]'
+        Start: 5.000241
+        id: 910879
+      id: 2810
+    Color: 0.0
+    Label: 1_annotator2
+    id: 2808
+    type: AnnotationTrack
+  id: 803
+Window:
+  Center:
+    X: 0.5
+    Y: 0.5
+  Name: Window
+  Options:
+    ColorMapApply: false
+    ColorMapType: 9
+    NormalizeDepth: true
+  Topic: /windows_07/image/compressed
+  Zoom: 1.0
+  id: 897
+  type: ImageWindow
+id: 802

@@ -2,11 +2,10 @@ import os
 import re
 import yaml
 import csv
-from collections import defaultdict, Counter
-import math
-from sklearn.metrics import cohen_kappa_score, confusion_matrix, accuracy_score
+from collections import defaultdict
 import numpy as np
-import csv
+from sklearn.metrics import cohen_kappa_score, confusion_matrix, accuracy_score
+
 
 class Agreement:
     """
@@ -52,10 +51,7 @@ class Agreement:
         return self.spans_by_annotator
 
     def align_and_compare(self):
-        """
-        Align spans track-by-track and return aligned intervals
-        with both annotator labels (agreement + disagreement).
-        """
+        """Align spans track-by-track and return aligned intervals with both annotator labels."""
         aligned = []
 
         spans_per_track = defaultdict(lambda: defaultdict(list))
@@ -102,33 +98,26 @@ class Agreement:
 
         return aligned
 
-
-
     def compute_metrics(self, aligned_intervals, csv_out="aligned_intervals.csv"):
         """Compute agreement metrics using sklearn + save intervals to CSV."""
-
-        # Flatten into parallel label sequences (weighted by duration)
         labels1, labels2, weights = [], [], []
         for s in aligned_intervals:
             if s["annotator1"] is None and s["annotator2"] is None:
                 continue
-            l1 = s["annotator1"] if s["annotator1"] is not None else "∅"
-            l2 = s["annotator2"] if s["annotator2"] is not None else "∅"
+            l1 = s["annotator1"] if s["annotator1"] is not None else "NULL_OBJ"
+            l2 = s["annotator2"] if s["annotator2"] is not None else "NULL_OBJ"
             labels1.append(l1)
             labels2.append(l2)
             weights.append(s["duration"])
 
-        # Convert to arrays
         labels1 = np.array(labels1)
         labels2 = np.array(labels2)
         weights = np.array(weights)
 
-        # Metrics
         overall_acc = accuracy_score(labels1, labels2, sample_weight=weights)
         kappa = cohen_kappa_score(labels1, labels2, sample_weight=weights)
         conf = confusion_matrix(labels1, labels2, sample_weight=weights)
 
-        # Write CSV
         with open(csv_out, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=aligned_intervals[0].keys())
             writer.writeheader()
@@ -141,10 +130,143 @@ class Agreement:
         }
 
 
+    # def diff_sub_labels(self, label1: str, label2: str) -> str:
+    #     """
+    #     Extracts only the differing sub-labels between two annotators.
+    #     Handles None gracefully.
+    #     """
+
+    #     def parse(label_str):
+    #         if not label_str:  # catches None or empty string
+    #             return {}
+    #         # Take only the part after 'label:'
+    #         if "label:" in label_str:
+    #             label_str = label_str.split("label:", 1)[1]
+    #         label_str = label_str.strip(" []")
+    #         parts = [p.strip() for p in label_str.split(",")]
+    #         parsed = {}
+    #         for p in parts:
+    #             if ": " in p:
+    #                 k, v = p.split(": ", 1)
+    #                 parsed[k.strip()] = v.strip()
+    #         return parsed
+
+    #     d1, d2 = parse(label1), parse(label2)
+
+    #     diffs = []
+    #     for k in d1.keys() | d2.keys():
+    #         v1, v2 = d1.get(k), d2.get(k)
+    #         if v1 != v2:
+    #             diffs.append(f"{k}: {v1 if v1 else 'NULL_OBJ'} vs {v2 if v2 else 'NULL_OBJ'}")
+
+    #     return " | ".join(diffs) if diffs else "agree"
+
+    def diff_sub_labels(self, label1: str, label2: str) -> str:
+        """
+        Extracts only the differing sub-labels between two annotators,
+        always reporting in canonical order.
+        """
+        def parse(label_str):
+            if not label_str:
+                return {}
+            if "label:" in label_str:
+                label_str = label_str.split("label:", 1)[1]
+            label_str = label_str.strip(" []")
+            parts = [p.strip() for p in label_str.split(",")]
+            parsed = {}
+            for p in parts:
+                if ": " in p:
+                    k, v = p.split(": ", 1)
+                    parsed[k.strip()] = v.strip()
+            return parsed
+
+        d1, d2 = parse(label1), parse(label2)
+
+        # define fixed order
+        category_order = [
+            "Customer Movement & Location",
+            "Customer Arm Action",
+            "Customer Interaction Flags",
+        ]
+
+        diffs = []
+        for k in category_order:
+            v1, v2 = d1.get(k), d2.get(k)
+            if v1 != v2:
+                diffs.append(f"{k}: {v1 if v1 else 'NULL_OBJ'} vs {v2 if v2 else 'NULL_OBJ'}")
+
+        return " | ".join(diffs) if diffs else "agree"
+
+
+
+
+    def add_disagreements_to_tmv(self, aligned_intervals, out_path):
+        """Write disagreements back into the TMV as new tracks."""
+        base_data = self.tmv_data
+        tracks = base_data["Timeline"]["Tracks"]
+
+        # use the bag name from the first track for consistency
+        bag_name = tracks[0]["Branches"][0]["Name"]
+
+        # Collect disagreements only
+        disagreements = [s for s in aligned_intervals if not s["agree"]]
+
+        if not disagreements:
+            return None
+
+        new_track_id = 100000 + len(tracks)
+        new_track = {
+            "Branches": [{
+                "Name": bag_name,
+                "Spans": []
+            }],
+            "Color": 0.0,
+            "Label": "Disagreements",
+            "id": new_track_id,
+            "type": "AnnotationTrack",
+        }
+        for idx, s in enumerate(disagreements):
+            new_track["Branches"][0]["Spans"].append({
+                "id": 900000 + idx,
+                "Start": s["start"],
+                "Duration": s["duration"],
+                # "Label": f"{s['annotator1']} | {s['annotator2']}",
+                "Label": self.diff_sub_labels(s['annotator1'], s['annotator2']),
+
+                "Annotations": [],
+            })
+        tracks.append(new_track)
+
+        base_data["Timeline"]["Tracks"] = tracks
+
+        with open(out_path, "w") as f:
+            yaml.dump(base_data, f, sort_keys=False)
+
+        return os.path.abspath(out_path)
+
+
 # Example usage
 if __name__ == "__main__":
-    agreement = Agreement("test_merged_large_overlap/1_combined.tmv")
+    # agreement = Agreement("overall_test/1_combined.tmv")
+    # agreement.extract_spans()
+    # aligned = agreement.align_and_compare()
+    # metrics = agreement.compute_metrics(aligned, "overall_test/aligned_intervals.csv")
+    # print("Metrics:", metrics)
+
+    # out_file = agreement.add_disagreements_to_tmv(aligned, "overall_test/1_with_disagreements.tmv")
+    # if out_file:
+    #     print("Saved disagreements to:", out_file)
+    # else:
+    #     print("No disagreements found.")
+
+    agreement = Agreement("overall_test_sublabels/1_combined.tmv")
     agreement.extract_spans()
     aligned = agreement.align_and_compare()
-    metrics = agreement.compute_metrics(aligned, "aligned_intervals.csv")
+    metrics = agreement.compute_metrics(aligned, "overall_test_sublabels/aligned_intervals.csv")
     print("Metrics:", metrics)
+
+    out_file = agreement.add_disagreements_to_tmv(aligned, "overall_test_sublabels/1_with_disagreements.tmv")
+    if out_file:
+        print("Saved disagreements to:", out_file)
+    else:
+        print("No disagreements found.")

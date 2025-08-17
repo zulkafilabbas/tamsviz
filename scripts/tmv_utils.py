@@ -265,9 +265,17 @@ class TmvMerger:
 ########################################## Initial tests for merger ###################################
 #######################################################################################################
 
+# merger = TmvMerger(
+#     ["overall_test/1_annotator1.tmv", "overall_test/1_annotator2.tmv"],
+#     ["annotator1", "annotator2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("overall_test/1_combined.tmv")  # ready to load into TAMSVIZ
+
+
 merger = TmvMerger(
-    ["1_annotator1.tmv", "1_annotator2.tmv"],
+    ["overall_test_sublabels/1_annotator1.tmv", "overall_test_sublabels/1_annotator2.tmv"],
     ["annotator1", "annotator2"]
 )
 print(merger.to_dict())  # see merged structure
-merger.save("1_combined.tmv")  # ready to load into TAMSVIZ
+merger.save("overall_test_sublabels/1_combined.tmv")  # ready to load into TAMSVIZ
