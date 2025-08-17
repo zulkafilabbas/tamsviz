@@ -17,6 +17,7 @@ import copy
 #   TmvParser → single-file correctness and normalization
 #   TmvMerger → multi-file merging and annotator disambiguation
 
+
 class TmvParser:
     """
     Parser for TAMSVIZ .tmv annotation files.
@@ -211,9 +212,25 @@ class TmvMerger:
 # print(merger.to_dict())  # see merged structure
 # merger.save("overall_test_sublabels/1_combined.tmv")  # ready to load into TAMSVIZ
 
+############################################################## kappa_test_by_hand ##############################################################
+# merger = TmvMerger(
+#     ["kappa_test_by_hand/1_annotator1.tmv", "kappa_test_by_hand/1_annotator2.tmv"],
+#     ["annotator1", "annotator2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("kappa_test_by_hand/1_combined.tmv")  # ready to load into TAMSVIZ
+
+############################################################## kappa_test_by_hand_global ##############################################################
 merger = TmvMerger(
-    ["kappa_test_by_hand/1_annotator1.tmv", "kappa_test_by_hand/1_annotator2.tmv"],
+    ["kappa_test_by_hand_global/1/1_annotator1.tmv", "kappa_test_by_hand_global/1/1_annotator2.tmv"],
     ["annotator1", "annotator2"]
 )
 print(merger.to_dict())  # see merged structure
-merger.save("kappa_test_by_hand/1_combined.tmv")  # ready to load into TAMSVIZ
+merger.save("kappa_test_by_hand_global/1/1_combined.tmv")  # ready to load into TAMSVIZ
+
+merger = TmvMerger(
+    ["kappa_test_by_hand_global/2/1_annotator1.tmv", "kappa_test_by_hand_global/2/1_annotator2.tmv"],
+    ["annotator1", "annotator2"]
+)
+print(merger.to_dict())  # see merged structure
+merger.save("kappa_test_by_hand_global/2/1_combined.tmv")  # ready to load into TAMSVIZ

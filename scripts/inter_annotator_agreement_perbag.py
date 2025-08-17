@@ -6,6 +6,29 @@ from collections import defaultdict
 import numpy as np
 from sklearn.metrics import cohen_kappa_score, confusion_matrix, accuracy_score
 
+"""
+This script computes *pairwise inter-annotator agreement* directly from combined
+`.tmv` annotation files (exported timelines with multiple annotators). It supports
+both detailed disagreement reporting and global metrics.
+
+1. **Span extraction**: Read each annotator’s tracks from the `.tmv`, normalize
+   track/annotator IDs, and collect all labeled spans with start, end, and duration.
+2. **Alignment**: For each track, cut time into minimal sub-intervals where labels
+   may change (union of all annotators’ start/end points). Each interval is assigned
+   the label active for each annotator, or `NULL_OBJ` if none covers it.
+3. **Comparison**: Build an aligned list of intervals with annotator1/annotator2
+   labels, durations, and a flag marking whether they agree.
+4. **Metrics**: Compute weighted accuracy, Cohen’s κ, and the confusion matrix
+   using duration as sample weight. Save the aligned intervals to CSV.
+5. **Disagreements**: Optionally write a new `.tmv` track containing only
+   disagreement spans, with labels reduced to just the differing subcategories.
+
+Key idea: Instead of treating spans independently, we align annotator timelines
+to the same cut-points, so overlapping but non-identical segmentations are still
+fairly compared. This ensures consistent weighting by duration and allows κ and
+the confusion matrix to reflect *all intervals equally* across annotators.
+"""
+
 
 class Agreement:
     """
@@ -237,21 +260,45 @@ if __name__ == "__main__":
     # else:
     #     print("No disagreements found.")
 
-    agreement = Agreement("kappa_test_by_hand/1_combined.tmv")
+    ############################################################## kappa_test_by_hand ##############################################################
+    # agreement = Agreement("kappa_test_by_hand/1_combined.tmv")
+    # agreement.extract_spans()
+    # aligned = agreement.align_and_compare()
+    # metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand/aligned_intervals.csv")
+
+    # # save metrics to a CSV
+    # with open("kappa_test_by_hand/metrics_report.csv", "w", newline="") as f:
+    #     writer = csv.DictWriter(f, fieldnames=metrics.keys())
+    #     writer.writeheader()
+    #     writer.writerow(metrics)
+
+    # print("Metrics:", metrics)
+
+    # out_file = agreement.add_disagreements_to_tmv(aligned, "kappa_test_by_hand/1_with_disagreements.tmv")
+    # if out_file:
+    #     print("Saved disagreements to:", out_file)
+    # else:
+    #     print("No disagreements found.")
+
+    ############################################################## kappa_test_by_hand_global ##############################################################
+    agreement = Agreement("kappa_test_by_hand_global/1/1_combined.tmv")
     agreement.extract_spans()
     aligned = agreement.align_and_compare()
-    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand/aligned_intervals.csv")
+    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/1/aligned_intervals.csv")
 
     # save metrics to a CSV
-    with open("kappa_test_by_hand/metrics_report.csv", "w", newline="") as f:
+    with open("kappa_test_by_hand_global/1/metrics_report.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=metrics.keys())
         writer.writeheader()
         writer.writerow(metrics)
+    
+    agreement = Agreement("kappa_test_by_hand_global/2/1_combined.tmv")
+    agreement.extract_spans()
+    aligned = agreement.align_and_compare()
+    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/2/aligned_intervals.csv")
 
-    print("Metrics:", metrics)
-
-    out_file = agreement.add_disagreements_to_tmv(aligned, "kappa_test_by_hand/1_with_disagreements.tmv")
-    if out_file:
-        print("Saved disagreements to:", out_file)
-    else:
-        print("No disagreements found.")
+    # save metrics to a CSV
+    with open("kappa_test_by_hand_global/2/metrics_report.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=metrics.keys())
+        writer.writeheader()
+        writer.writerow(metrics)

@@ -1,0 +1,78 @@
+Display:
+  Displays:
+    []
+  Environment:
+    AmbientLighting: 1.000000
+    BackgroundBrightness: 1.000000
+    BackgroundColor:
+      A: 1.000000
+      B: 0.300000
+      G: 0.300000
+      R: 0.300000
+    EnvironmentMap: ""
+    GroundColor:
+      B: 0.000000
+      G: 0.000000
+      R: 0.000000
+    HemisphericLighting: 0.500000
+    UseEnvironmentMap: false
+    id: 806
+    type: EnvironmentComponent
+  FixedFrame: world
+  Name: Document
+  Rendering:
+    BlackLevel: 0.000000
+    Exposure: 1.000000
+    MultiSampling: 4
+    SampleShading: 1
+    ShadowCubeResolution: 512
+    ShadowMapResolution: 1024
+    ToneMapping: true
+    WhiteLevel: 1.000000
+    id: 805
+    type: RenderingComponent
+  Republish: true
+  id: 804
+Timeline:
+  Tracks:
+    - Branches:
+        - Name: test_merged.bag
+          Spans:
+            - Annotations:
+                []
+              Duration: 8.0
+              Label: "decision: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Moving through the Store, Customer Arm Action: Extending or Retracting Arm, Customer Interaction Flags: Interacting]"
+              Start: 0.000000
+              id: 900112
+            - Annotations:
+                []
+              Duration: 7.0
+              Label: "decision: [Customer Movement & Location: Standing at the Shelf, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Standing at the Shelf, Customer Arm Action: Holding Arm in front of Body, Customer Interaction Flags: Interacting]"
+              Start: 8.0
+              id: 900113
+            - Annotations:
+                []
+              Duration: 5.0
+              Label: "decision: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Interacting], label: [Customer Movement & Location: Standing at the Mirror, Customer Arm Action: Raising or Lowering Arm from Head, Customer Interaction Flags: Interacting]"
+              Start: 15.0
+              id: 900114
+          id: 810
+      Color: 0.000000
+      Label: 1
+      id: 808
+      type: AnnotationTrack
+  id: 803
+Window:
+  Center:
+    X: 0.500000
+    Y: 0.500000
+  Name: Window
+  Options:
+    ColorMapApply: false
+    ColorMapType: 9
+    NormalizeDepth: true
+  Topic: /windows_07/image/compressed
+  Zoom: 1.000000
+  id: 897
+  type: ImageWindow
+id: 802
