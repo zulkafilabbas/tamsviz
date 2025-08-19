@@ -6,10 +6,10 @@ import json
 
 WINDOW_WIDTH = 1800
 WINDOW_HEIGHT = 600
-BUTTON_FONT = ("TkDefaultFont", 12)
+BUTTON_FONT = ("Nimbus Sans", 14)
 BUTTON_WIDTH = 22
 BUTTON_HEIGHT = 3
-WRAP_LEN = 180
+WRAP_LEN = 250
 
 class ToolTip:
     def __init__(self, widget, text=""):
@@ -95,13 +95,13 @@ class LabelSelector:
         # --- Submit row (centered) ---
         submit_frame = tk.Frame(self.root)
         submit_frame.pack(fill="x", pady=(10, 5))
-        self.submit_button = ttk.Button(submit_frame, text="Submit", command=self.submit_selections)
+        self.submit_button = ttk.Button(submit_frame, text="Submit (送信)", command=self.submit_selections)
         self.submit_button.pack(anchor="center")
 
         # --- Toggle row (right-aligned below submit) ---
         toggle_frame = tk.Frame(self.root)
         toggle_frame.pack(fill="x", pady=(0, 10), padx=10)
-        self.tooltip_button = ttk.Button(toggle_frame, text="Toggle Tooltips", command=self.toggle_tooltips)
+        self.tooltip_button = ttk.Button(toggle_frame, text="Toggle Definitions (定義を表示)", command=self.toggle_tooltips)
         self.tooltip_button.pack(anchor="e")
 
     def toggle_tooltips(self):
@@ -138,7 +138,7 @@ def main():
     root = tk.Tk()
     style = ttk.Style()
     style.theme_use('clam')
-    with open(os.path.join(os.path.dirname(__file__), 'label_selector_config4.json'), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'label_selector_config5.json'), 'r') as f:
         config = json.load(f)
     app = LabelSelector(root, config)
     root.protocol("WM_DELETE_WINDOW", lambda: sys.exit(0))

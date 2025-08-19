@@ -162,7 +162,7 @@ set(RUNTIME_DST ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION})
 add_custom_target(copy_runtime ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory ${RUNTIME_DST}/gui
   COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/label_selector4.py ${RUNTIME_DST}/gui/
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/label_selector_config4.json ${RUNTIME_DST}/gui/
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/label_selector_config5.json ${RUNTIME_DST}/gui/
   COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/gui/tamsviz_addon_config.json ${RUNTIME_DST}/
   COMMENT "Copying GUI runtime assets to devel space"
 )

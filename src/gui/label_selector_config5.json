@@ -1,0 +1,29 @@
+{
+    "categories": [
+        {
+            "name": "Customer Movement & Locations",
+            "actions": [
+                {"label": "Moving Through the Store", "description": "店内を移動（Moving Through the Store）顧客が店内を歩いて、ある場所から別の場所へ移動しているとき。ただし、同じ棚等に沿って横移動している場合や、その場で向きを変えている場合は、店内を移動とみなさないため、以下のいずれかのラベルを使うこと。"},
+                {"label": "Standing at the Shelf", "description": "棚の前に立つ（Standing at the Shelf）顧客が棚の前に立っている、あるいは同じ棚に沿ってわずかに体の位置を変えているとき。"},
+                {"label": "Standing at the Mirror", "description": "鏡の前に立つ（Standing at the Mirror）顧客が鏡の前に立っているとき。その場での小さな動きや方向転換があってもこのラベルを付けること。"},
+                {"label": "Standing at the Counter", "description": "カウンターの前に立つ（Standing at the Counter）顧客がカウンターの前に立っているとき（例：会計中）。"}
+            ]
+        },
+        {
+            "name": "Customer Arm Actions",
+            "actions": [
+                {"label": "Pick or Place a Hat", "description": "帽子を取る・置く（Pick or Place a Hat）顧客が腕を伸ばして帽子を取る、または棚やカウンターに帽子を置くとき。ラベルは、動作の開始から終了まで付けること。開始＝腕を伸ばし始めたとき、終了＝腕を完全に引き戻したとき。"},
+                {"label": "Holding Hat", "description": "帽子を持つ（Holding Hat）顧客が帽子を片手または両手で体の前に持っているとき。開始＝帽子を手に取り、体の前で保持した、終了＝帽子を別の動作に使い始めたとき。帽子を持っている間の軽微な手や指の動きは無視して良い。"},
+                {"label": "Wear or Take Off a Hat", "description": "帽子をかぶる・脱ぐ（Wear or Take Off a Hat）顧客が腕を上げ下げして帽子をかぶる、脱ぐ、または調整する動作。開始＝腕が頭に向かって動き始めたとき、終了＝動作が終わり腕が再び静止したとき。"},
+                {"label": "Idle", "description": "待機（Idle）上記3つの動作に当てはまらないすべての腕の状態（腕を横に下ろしている、ポケットに手を入れている、腕を組んでいるなど）。帽子以外の物を扱っている場合（電話を持つ、眼鏡を付ける、紙を直すなど）も「待機」とする。"}
+            ]
+        },
+        {
+            "name": "Interaction With Shopkeeper",
+            "actions": [
+                {"label": "Interacting", "description": "インタラクションする（Interacting）店員と会話しているとき、または店員が近くにいて顧客に対応や説明をしているとき。顧客が棚や鏡を見ていて店員の方を向いていなくても、インタラクションとする。"},
+                {"label": "Not Interacting", "description": "インタラクションしない（Not Interacting）上記に当てはまらないとき。"}
+            ]
+        }
+    ]
+}
