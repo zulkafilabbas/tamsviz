@@ -221,16 +221,52 @@ class TmvMerger:
 # merger.save("kappa_test_by_hand/1_combined.tmv")  # ready to load into TAMSVIZ
 
 ############################################################## kappa_test_by_hand_global ##############################################################
-merger = TmvMerger(
-    ["kappa_test_by_hand_global/1/1_annotator1.tmv", "kappa_test_by_hand_global/1/1_annotator2.tmv"],
-    ["annotator1", "annotator2"]
-)
-print(merger.to_dict())  # see merged structure
-merger.save("kappa_test_by_hand_global/1/1_combined.tmv")  # ready to load into TAMSVIZ
+# merger = TmvMerger(
+#     ["kappa_test_by_hand_global/1/1_annotator1.tmv", "kappa_test_by_hand_global/1/1_annotator2.tmv"],
+#     ["annotator1", "annotator2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("kappa_test_by_hand_global/1/1_combined.tmv")  # ready to load into TAMSVIZ
 
-merger = TmvMerger(
-    ["kappa_test_by_hand_global/2/1_annotator1.tmv", "kappa_test_by_hand_global/2/1_annotator2.tmv"],
-    ["annotator1", "annotator2"]
-)
-print(merger.to_dict())  # see merged structure
-merger.save("kappa_test_by_hand_global/2/1_combined.tmv")  # ready to load into TAMSVIZ
+# merger = TmvMerger(
+#     ["kappa_test_by_hand_global/2/1_annotator1.tmv", "kappa_test_by_hand_global/2/1_annotator2.tmv"],
+#     ["annotator1", "annotator2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("kappa_test_by_hand_global/2/1_combined.tmv")  # ready to load into TAMSVIZ
+
+############################################################ AUGUST 20th ANNOTATIONS ##############################################################
+
+# # 2025-03-18_s21_merged_tracked_fix_sorted.tmv
+# merger = TmvMerger(
+#     ["/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-03-18_s21_merged_tracked_fix_sorted.tmv", "/home/robovie/Desktop/August_20_Agreement_Analysis/OA2/2025-03-18_s21_merged_tracked_fix_sorted.tmv"],
+#     ["OA1", "OA2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-03-18_s21_merged_tracked_fix_sorted_combined.tmv")  # ready to load into TAMSVIZ
+
+# # 2025-04-17_s2_merged_tracked_fix_sorted.tmv
+# merger = TmvMerger(
+#     ["/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-17_s2_merged_tracked_fix_sorted.tmv", "/home/robovie/Desktop/August_20_Agreement_Analysis/OA2/2025-04-17_s2_merged_tracked_fix_sorted.tmv"],
+#     ["OA1", "OA2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-17_s2_merged_tracked_fix_sorted_combined.tmv")  # ready to load into TAMSVIZ
+
+# # 2025-04-27_s44_merged_tracked_fix_sorted.tmv
+# merger = TmvMerger(
+#     ["/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-27_s44_merged_tracked_fix_sorted.tmv", "/home/robovie/Desktop/August_20_Agreement_Analysis/OA2/2025-04-27_s44_merged_tracked_fix_sorted.tmv"],
+#     ["OA1", "OA2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-27_s44_merged_tracked_fix_sorted_combined.tmv")  # ready to load into TAMSVIZ
+
+# # 2025-04-30_s4_merged_tracked_fix_sorted.tmv
+# merger = TmvMerger(
+#     ["/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-30_s4_merged_tracked_fix_sorted.tmv", "/home/robovie/Desktop/August_20_Agreement_Analysis/OA2/2025-04-30_s4_merged_tracked_fix_sorted.tmv"],
+#     ["OA1", "OA2"]
+# )
+# print(merger.to_dict())  # see merged structure
+# merger.save("/home/robovie/Desktop/August_20_Agreement_Analysis/OA1/2025-04-30_s4_merged_tracked_fix_sorted_combined.tmv")  # ready to load into TAMSVIZ
+
+####################################################################################################################################################

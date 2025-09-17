@@ -175,9 +175,9 @@ class Agreement:
 
         # define fixed order
         category_order = [
-            "Customer Movement & Location",
-            "Customer Arm Action",
-            "Customer Interaction Flags",
+            "Customer Movement & Locations",
+            "Customer Arm Actions",
+            "Interaction With Shopkeeper",
         ]
 
         diffs = []
@@ -281,24 +281,99 @@ if __name__ == "__main__":
     #     print("No disagreements found.")
 
     ############################################################## kappa_test_by_hand_global ##############################################################
-    agreement = Agreement("kappa_test_by_hand_global/1/1_combined.tmv")
+    # agreement = Agreement("kappa_test_by_hand_global/1/1_combined.tmv")
+    # agreement.extract_spans()
+    # aligned = agreement.align_and_compare()
+    # metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/1/aligned_intervals.csv")
+
+    # # save metrics to a CSV
+    # with open("kappa_test_by_hand_global/1/metrics_report.csv", "w", newline="") as f:
+    #     writer = csv.DictWriter(f, fieldnames=metrics.keys())
+    #     writer.writeheader()
+    #     writer.writerow(metrics)
+    
+    # agreement = Agreement("kappa_test_by_hand_global/2/1_combined.tmv")
+    # agreement.extract_spans()
+    # aligned = agreement.align_and_compare()
+    # metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/2/aligned_intervals.csv")
+
+    # # save metrics to a CSV
+    # with open("kappa_test_by_hand_global/2/metrics_report.csv", "w", newline="") as f:
+    #     writer = csv.DictWriter(f, fieldnames=metrics.keys())
+    #     writer.writeheader()
+    #     writer.writerow(metrics)
+
+
+    ############################################################ AUGUST 20th ANNOTATIONS ##############################################################
+    # 2025-03-18_s21_merged_tracked_fix_sorted_combined.tmv
+    agreement = Agreement("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-03-18_s21_merged_tracked_fix_sorted_combined.tmv")
     agreement.extract_spans()
     aligned = agreement.align_and_compare()
-    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/1/aligned_intervals.csv")
+    metrics = agreement.compute_metrics(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-03-18_s21_merged_tracked_fix_sorted_combined_aligned_intervals.csv")
 
     # save metrics to a CSV
-    with open("kappa_test_by_hand_global/1/metrics_report.csv", "w", newline="") as f:
+    with open("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-03-18_s21_merged_tracked_fix_sorted_combined_metrics_report.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=metrics.keys())
         writer.writeheader()
         writer.writerow(metrics)
     
-    agreement = Agreement("kappa_test_by_hand_global/2/1_combined.tmv")
+    out_file = agreement.add_disagreements_to_tmv(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-03-18_s21_merged_tracked_fix_sorted_combined_with_disagreements.tmv")
+    if out_file:
+        print("Saved disagreements to:", out_file)
+    else:
+        print("No disagreements found.")
+
+    # 2025-04-17_s2_merged_tracked_fix_sorted_combined.tmv
+    agreement = Agreement("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-17_s2_merged_tracked_fix_sorted_combined.tmv")
     agreement.extract_spans()
     aligned = agreement.align_and_compare()
-    metrics = agreement.compute_metrics(aligned, "kappa_test_by_hand_global/2/aligned_intervals.csv")
+    metrics = agreement.compute_metrics(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-17_s2_merged_tracked_fix_sorted_combined_aligned_intervals.csv")
 
     # save metrics to a CSV
-    with open("kappa_test_by_hand_global/2/metrics_report.csv", "w", newline="") as f:
+    with open("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-17_s2_merged_tracked_fix_sorted_combined_metrics_report.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=metrics.keys())
         writer.writeheader()
         writer.writerow(metrics)
+    
+    out_file = agreement.add_disagreements_to_tmv(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-17_s2_merged_tracked_fix_sorted_combined_with_disagreements.tmv")
+    if out_file:
+        print("Saved disagreements to:", out_file)
+    else:
+        print("No disagreements found.")
+
+    # 2025-04-27_s44_merged_tracked_fix_sorted_combined.tmv
+    agreement = Agreement("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-27_s44_merged_tracked_fix_sorted_combined.tmv")
+    agreement.extract_spans()
+    aligned = agreement.align_and_compare()
+    metrics = agreement.compute_metrics(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-27_s44_merged_tracked_fix_sorted_combined_aligned_intervals.csv")
+
+    # save metrics to a CSV
+    with open("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-27_s44_merged_tracked_fix_sorted_combined_metrics_report.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=metrics.keys())
+        writer.writeheader()
+        writer.writerow(metrics)
+
+    out_file = agreement.add_disagreements_to_tmv(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-27_s44_merged_tracked_fix_sorted_combined_with_disagreements.tmv")
+    if out_file:
+        print("Saved disagreements to:", out_file)
+    else:
+        print("No disagreements found.")
+
+    # 2025-04-30_s4_merged_tracked_fix_sorted_combined.tmv
+    agreement = Agreement("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-30_s4_merged_tracked_fix_sorted_combined.tmv")
+    agreement.extract_spans()
+    aligned = agreement.align_and_compare()
+    metrics = agreement.compute_metrics(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-30_s4_merged_tracked_fix_sorted_combined_aligned_intervals.csv")
+
+    # save metrics to a CSV
+    with open("/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-30_s4_merged_tracked_fix_sorted_combined_metrics_report.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=metrics.keys())
+        writer.writeheader()
+        writer.writerow(metrics)
+    
+    out_file = agreement.add_disagreements_to_tmv(aligned, "/home/robovie/Desktop/August_20_Agreement_Analysis/2025-04-30_s4_merged_tracked_fix_sorted_combined_with_disagreements.tmv")
+    if out_file:
+        print("Saved disagreements to:", out_file)
+    else:
+        print("No disagreements found.")
+    
