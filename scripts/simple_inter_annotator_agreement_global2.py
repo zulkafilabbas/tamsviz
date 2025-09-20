@@ -83,14 +83,18 @@ import seaborn as sns   # optional, for nicer heatmaps
 SAMPLE_RATE = 100  # Hz
 DT = 1.0 / SAMPLE_RATE
 
-OA1_DIR = "/home/robovie/Desktop/September_8_Agreement_Analysis/OA1_male"
-OA2_DIR = "/home/robovie/Desktop/September_8_Agreement_Analysis/OA2_female"
+OA1_DIR = "/home/robovie/Desktop/September_18_Agreement_Analysis/OA1_male"
+OA2_DIR = "/home/robovie/Desktop/September_18_Agreement_Analysis/OA2_female"
 
 
 def collect_fix_sorted_files(oa1_dir, oa2_dir):
     """Match only files ending with _fix_sorted.tmv and present in both OA1 and OA2."""
-    oa1_files = {f for f in os.listdir(oa1_dir) if f.endswith("_fix_sorted.tmv")}
-    oa2_files = {f for f in os.listdir(oa2_dir) if f.endswith("_fix_sorted.tmv")}
+    # oa1_files = {f for f in os.listdir(oa1_dir) if f.endswith("_fix_sorted.tmv")}
+    # oa2_files = {f for f in os.listdir(oa2_dir) if f.endswith("_fix_sorted.tmv")}
+
+    oa1_files = {f for f in os.listdir(oa1_dir) if f.endswith(".tmv")}
+    oa2_files = {f for f in os.listdir(oa2_dir) if f.endswith(".tmv")}
+
     common = sorted(list(oa1_files & oa2_files))
     return [(os.path.join(oa1_dir, f), os.path.join(oa2_dir, f)) for f in common]
 
